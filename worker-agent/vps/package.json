@@ -1,0 +1,12 @@
+{
+  "name": "computehub-vps-agent",
+  "version": "1.0.0",
+  "description": "ComputeHub 24/7 Universal Compute Worker Agent for Linux VPS & Cloud VMs",
+  "main": "agent.js",
+  "scripts": {
+    "start": "node agent.js"
+  },
+  "keywords": ["computehub", "linux", "vps", "docker", "compute-worker"],
+  "author": "ComputeHub Cloud",
+  "license": "MIT"
+}

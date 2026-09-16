@@ -1,0 +1,6 @@
+{
+  "name": "ComputeHub Universal Server Platform",
+  "description": "24/7 Distributed Multi-Worker Compute & Hosting Controller with Auto-Scheduler for Android Termux, Linux VPS, Cloud VMs, Web Apps, APIs, AI Inference, and Game Servers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

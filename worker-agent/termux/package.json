@@ -1,0 +1,12 @@
+{
+  "name": "computehub-termux-agent",
+  "version": "1.0.0",
+  "description": "ComputeHub 24/7 Universal Compute Worker Agent for Android Termux",
+  "main": "agent.js",
+  "scripts": {
+    "start": "node agent.js"
+  },
+  "keywords": ["computehub", "termux", "android", "compute-worker", "distributed-hosting"],
+  "author": "ComputeHub Cloud",
+  "license": "MIT"
+}

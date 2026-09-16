@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  omnihost-app:
+    build: .
+    container_name: omnihost_server
+    restart: always
+    ports:
+      - "3000:3000"
+      - "25565:25565" # Game server dedicated port
+      - "8000:8000"   # AI inference dedicated port
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - JWT_SECRET=production_secret_key_change_me_omnihost_2026
+      - DATABASE_URL=postgresql://omnihost:omnihost_sec_pass@postgres:5432/omnihost
+      - REDIS_URL=redis://:redis_sec_pass@redis:6379/0
+    volumes:
+      - ./storage:/app/storage
+      - ./logs:/app/logs
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: omnihost_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: omnihost
+      POSTGRES_PASSWORD: omnihost_sec_pass
+      POSTGRES_DB: omnihost
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    container_name: omnihost_redis
+    restart: always
+    command: redis-server --requirepass redis_sec_pass
+    volumes:
+      - redisdata:/data
+    ports:
+      - "6379:6379"
+
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: omnihost_nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - certbot-etc:/etc/letsencrypt
+    depends_on:
+      - omnihost-app
+
+volumes:
+  pgdata:
+  redisdata:
+  certbot-etc:

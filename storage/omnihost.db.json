@@ -1,0 +1,1097 @@
+{
+  "users": [
+    {
+      "id": "user_admin_root",
+      "email": "admin@omnihost.cloud",
+      "name": "OmniHost Super Admin",
+      "role": "superadmin",
+      "planId": "business",
+      "status": "active",
+      "createdAt": "2026-09-15T10:41:16.374Z",
+      "lastLoginAt": "2026-09-15T12:44:29.146Z"
+    },
+    {
+      "id": "user_developer_01",
+      "email": "developer@omnihost.cloud",
+      "name": "Senior Systems Engineer",
+      "role": "user",
+      "planId": "pro",
+      "status": "active",
+      "createdAt": "2026-09-15T10:41:16.375Z",
+      "lastLoginAt": "2026-09-15T10:41:16.375Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj_api_gateway",
+      "ownerId": "user_developer_01",
+      "name": "Core API Gateway Microservice",
+      "slug": "api-gateway",
+      "description": "High throughput Node.js / Express REST and WebSocket gateway",
+      "workloadType": "api",
+      "runtime": "nodejs-20",
+      "status": "running",
+      "buildCommand": "npm install",
+      "startCommand": "node index.js",
+      "assignedInternalPort": 3101,
+      "ports": [
+        {
+          "internalPort": 3101,
+          "publicPort": 443,
+          "protocol": "http",
+          "isExposed": true
+        }
+      ],
+      "subdomain": "api-gateway",
+      "storagePath": "/app/applet/storage/projects/proj_api_gateway",
+      "restartPolicy": "always",
+      "restartCount": 0,
+      "envVars": {
+        "NODE_ENV": "production",
+        "PORT": "3101",
+        "RATE_LIMIT": "1000"
+      },
+      "limits": {
+        "cpuCores": 2,
+        "memoryMB": 2048,
+        "storageMB": 10240,
+        "processLimit": 5
+      },
+      "createdAt": "2026-09-11T10:41:16.375Z",
+      "updatedAt": "2026-09-15T11:39:52.407Z",
+      "lastDeployedAt": "2026-09-15T05:41:16.375Z"
+    },
+    {
+      "id": "proj_fastapi_llama",
+      "ownerId": "user_developer_01",
+      "name": "FastAPI Llama AI Embeddings & Inference",
+      "slug": "fastapi-llama",
+      "description": "Python FastAPI PyTorch AI engine serving embeddings and semantic search",
+      "workloadType": "ai",
+      "runtime": "python-ai-pytorch",
+      "status": "running",
+      "buildCommand": "pip install -r requirements.txt",
+      "startCommand": "uvicorn main:app --host 0.0.0.0 --port 8000",
+      "assignedInternalPort": 8000,
+      "ports": [
+        {
+          "internalPort": 8000,
+          "publicPort": 8000,
+          "protocol": "http",
+          "isExposed": true
+        }
+      ],
+      "subdomain": "ai-infer",
+      "storagePath": "/app/applet/storage/projects/proj_fastapi_llama",
+      "restartPolicy": "always",
+      "restartCount": 0,
+      "envVars": {
+        "MODEL_NAME": "meta-llama-3-8b-instruct",
+        "MAX_BATCH_SIZE": "16",
+        "ENABLE_CUDA": "true"
+      },
+      "limits": {
+        "cpuCores": 4,
+        "memoryMB": 8192,
+        "storageMB": 51200,
+        "processLimit": 10,
+        "gpuEnabled": true,
+        "gpuMemoryMB": 4096
+      },
+      "aiConfig": {
+        "modelType": "text-generation-inference",
+        "accelerator": "cuda",
+        "apiEndpointPath": "/api/v1/generate"
+      },
+      "createdAt": "2026-09-13T10:41:16.375Z",
+      "updatedAt": "2026-09-15T11:39:52.407Z",
+      "lastDeployedAt": "2026-09-14T22:41:16.375Z"
+    },
+    {
+      "id": "proj_game_paper_mc",
+      "ownerId": "user_developer_01",
+      "name": "Survival SMP Paper Minecraft Dedicated",
+      "slug": "survival-smp",
+      "description": "High-tick Java 21 Paper Minecraft game server with automated world backups",
+      "workloadType": "gameserver",
+      "runtime": "java-21",
+      "status": "running",
+      "buildCommand": "echo \"Java Paper Ready\"",
+      "startCommand": "java -Xms2G -Xmx4G -XX:+UseG1GC -jar paper.jar --nogui",
+      "assignedInternalPort": 25565,
+      "ports": [
+        {
+          "internalPort": 25565,
+          "publicPort": 25565,
+          "protocol": "tcp",
+          "isExposed": true
+        },
+        {
+          "internalPort": 25575,
+          "publicPort": 25575,
+          "protocol": "tcp",
+          "isExposed": false
+        }
+      ],
+      "subdomain": "play-survival",
+      "storagePath": "/app/applet/storage/projects/proj_game_paper_mc",
+      "restartPolicy": "always",
+      "restartCount": 0,
+      "envVars": {
+        "MAX_PLAYERS": "30",
+        "DIFFICULTY": "hard",
+        "MOTD": "OmniHost 24/7 High-Perf SMP"
+      },
+      "limits": {
+        "cpuCores": 4,
+        "memoryMB": 6144,
+        "storageMB": 30720,
+        "processLimit": 5
+      },
+      "gameServerConfig": {
+        "gameType": "minecraft",
+        "maxPlayers": 30,
+        "worldName": "world_smp_prime",
+        "queryPort": 25565,
+        "rconPort": 25575
+      },
+      "createdAt": "2026-09-08T10:41:16.375Z",
+      "updatedAt": "2026-09-15T11:39:52.408Z",
+      "lastDeployedAt": "2026-09-14T10:41:16.375Z"
+    },
+    {
+      "id": "proj_1789476247320_2tvs",
+      "ownerId": "user_developer_01",
+      "name": "Real Python Worker Verification Workload",
+      "slug": "real-python-worker-verification-workload",
+      "description": "Test Python process running on Termux worker",
+      "workloadType": "api",
+      "runtime": "python-3.11",
+      "status": "running",
+      "buildCommand": "pip install -r requirements.txt",
+      "startCommand": "python3 main.py",
+      "assignedInternalPort": 3100,
+      "ports": [
+        {
+          "internalPort": 3100,
+          "publicPort": 443,
+          "protocol": "http",
+          "isExposed": true
+        }
+      ],
+      "subdomain": "real-python-worker-verification-workload",
+      "storagePath": "/app/applet/storage/projects/proj_1789476247320_2tvs",
+      "envVars": {
+        "NODE_ENV": "production",
+        "PORT": "3100"
+      },
+      "limits": {
+        "cpuCores": 2,
+        "memoryMB": 2048,
+        "storageMB": 10240,
+        "processLimit": 5,
+        "gpuEnabled": false
+      },
+      "restartPolicy": "always",
+      "restartCount": 0,
+      "createdAt": "2026-09-15T12:44:07.320Z",
+      "updatedAt": "2026-09-15T12:44:07.327Z",
+      "lastDeployedAt": "2026-09-15T12:44:07.327Z"
+    },
+    {
+      "id": "proj_1789476269163_as0j",
+      "ownerId": "user_admin_root",
+      "name": "Real Python Worker Verification Workload",
+      "slug": "real-python-worker-verification-workload",
+      "description": "Test Python process running on Termux worker",
+      "workloadType": "api",
+      "runtime": "python-3.11",
+      "status": "running",
+      "buildCommand": "pip install -r requirements.txt",
+      "startCommand": "python3 main.py",
+      "assignedInternalPort": 3102,
+      "ports": [
+        {
+          "internalPort": 3102,
+          "publicPort": 443,
+          "protocol": "http",
+          "isExposed": true
+        }
+      ],
+      "subdomain": "real-python-worker-verification-workload",
+      "storagePath": "/app/applet/storage/projects/proj_1789476269163_as0j",
+      "envVars": {
+        "NODE_ENV": "production",
+        "PORT": "3102"
+      },
+      "limits": {
+        "cpuCores": 2,
+        "memoryMB": 2048,
+        "storageMB": 10240,
+        "processLimit": 5,
+        "gpuEnabled": false
+      },
+      "restartPolicy": "always",
+      "restartCount": 0,
+      "createdAt": "2026-09-15T12:44:29.163Z",
+      "updatedAt": "2026-09-15T12:44:29.170Z",
+      "lastDeployedAt": "2026-09-15T12:44:29.169Z"
+    }
+  ],
+  "deployments": [
+    {
+      "id": "dep_1789476269163_obip",
+      "projectId": "proj_1789476269163_as0j",
+      "version": 1,
+      "status": "active",
+      "sourceType": "template",
+      "commitMessage": "Project created with runtime template",
+      "logs": [
+        "[12:44:29] === INITIALIZING DEPLOYMENT PIPELINE v1 ===",
+        "[12:44:29] Workload Target: Real Python Worker Verification Workload (API)",
+        "[12:44:29] Runtime Environment: python-3.11",
+        "[12:44:29] [STEP 1/6] Preparing workspace storage at /app/applet/storage/projects/proj_1789476269163_as0j...",
+        "[12:44:29] [TEMPLATE] Hydrating runtime starter boilerplate for python-3.11...",
+        "[12:44:29] [TEMPLATE] Starter files generated.",
+        "[12:44:29] [STEP 2/6] Validating runtime dependencies & manifest...",
+        "[12:44:29] [MANIFEST] Found 1 project root entries.",
+        "[12:44:29] [STEP 3/6] Executing build command: \"pip install -r requirements.txt\"...",
+        "[12:44:29] [BUILD] Compiling artifacts and resolving dependencies...",
+        "[12:44:29] [BUILD] Build finished with exit code 0.",
+        "[12:44:29] [STEP 4/6] Allocating internal container port 3102...",
+        "[12:44:29] [NETWORK] Reverse proxy route configured for *.real-python-worker-verification-workload.omnihost.local",
+        "[12:44:29] [STEP 5/6] Starting supervised application process...",
+        "[12:44:29] [STEP 6/6] Running automated health check probe...",
+        "[12:44:29] [HEALTH] GET http://localhost:3102/health -> 200 OK (latency: 3ms)",
+        "[12:44:29] === DEPLOYMENT COMPLETED SUCCESSFULLY IN 0.01s ==="
+      ],
+      "startedAt": "2026-09-15T12:44:29.163Z",
+      "deployedBy": "user_admin_root",
+      "durationMs": 5,
+      "completedAt": "2026-09-15T12:44:29.169Z"
+    },
+    {
+      "id": "dep_1789476247320_ucay",
+      "projectId": "proj_1789476247320_2tvs",
+      "version": 1,
+      "status": "active",
+      "sourceType": "template",
+      "commitMessage": "Project created with runtime template",
+      "logs": [
+        "[12:44:07] === INITIALIZING DEPLOYMENT PIPELINE v1 ===",
+        "[12:44:07] Workload Target: Real Python Worker Verification Workload (API)",
+        "[12:44:07] Runtime Environment: python-3.11",
+        "[12:44:07] [STEP 1/6] Preparing workspace storage at /app/applet/storage/projects/proj_1789476247320_2tvs...",
+        "[12:44:07] [TEMPLATE] Hydrating runtime starter boilerplate for python-3.11...",
+        "[12:44:07] [TEMPLATE] Starter files generated.",
+        "[12:44:07] [STEP 2/6] Validating runtime dependencies & manifest...",
+        "[12:44:07] [MANIFEST] Found 1 project root entries.",
+        "[12:44:07] [STEP 3/6] Executing build command: \"pip install -r requirements.txt\"...",
+        "[12:44:07] [BUILD] Compiling artifacts and resolving dependencies...",
+        "[12:44:07] [BUILD] Build finished with exit code 0.",
+        "[12:44:07] [STEP 4/6] Allocating internal container port 3100...",
+        "[12:44:07] [NETWORK] Reverse proxy route configured for *.real-python-worker-verification-workload.omnihost.local",
+        "[12:44:07] [STEP 5/6] Starting supervised application process...",
+        "[12:44:07] [STEP 6/6] Running automated health check probe...",
+        "[12:44:07] [HEALTH] GET http://localhost:3100/health -> 200 OK (latency: 3ms)",
+        "[12:44:07] === DEPLOYMENT COMPLETED SUCCESSFULLY IN 0.01s ==="
+      ],
+      "startedAt": "2026-09-15T12:44:07.320Z",
+      "deployedBy": "user_developer_01",
+      "durationMs": 6,
+      "completedAt": "2026-09-15T12:44:07.327Z"
+    },
+    {
+      "id": "dep_001",
+      "projectId": "proj_api_gateway",
+      "version": 1,
+      "status": "active",
+      "commitMessage": "Initial microservice deployment",
+      "sourceType": "template",
+      "logs": [
+        "[SYSTEM] Validating project manifest...",
+        "[BUILD] Executing: npm install",
+        "[BUILD] Dependencies resolved in 1.4s",
+        "[RUNTIME] Allocating isolated port 3101",
+        "[HEALTH] Probing http://localhost:3101/health - Status 200 OK",
+        "[PROXY] Route mapped to https://api-gateway.omnihost.local",
+        "[STATUS] Deployment ACTIVE"
+      ],
+      "startedAt": "2026-09-15T05:41:16.376Z",
+      "completedAt": "2026-09-15T05:41:24.376Z",
+      "deployedBy": "user_developer_01"
+    },
+    {
+      "id": "dep_002",
+      "projectId": "proj_fastapi_llama",
+      "version": 1,
+      "status": "active",
+      "commitMessage": "Mount PyTorch CUDA inference worker",
+      "sourceType": "template",
+      "logs": [
+        "[SYSTEM] Validating Python AI runtime requirements...",
+        "[CUDA] Detecting GPU Hardware: CUDA cores available",
+        "[BUILD] Loading requirements.txt (fastapi, torch, transformers)",
+        "[PROCESS] Spawning worker: uvicorn main:app --port 8000",
+        "[HEALTH] Ready state verified",
+        "[AI] Endpoint /api/v1/generate authenticated and active"
+      ],
+      "startedAt": "2026-09-14T22:41:16.376Z",
+      "completedAt": "2026-09-14T22:41:30.376Z",
+      "deployedBy": "user_developer_01"
+    }
+  ],
+  "processes": [],
+  "domains": [
+    {
+      "id": "dom_001",
+      "projectId": "proj_api_gateway",
+      "ownerId": "user_developer_01",
+      "domainName": "api.omnihost.local",
+      "isCustom": false,
+      "status": "ssl_active",
+      "sslProvider": "letsencrypt",
+      "dnsTarget": "node1.omnihost.cloud",
+      "createdAt": "2026-09-15T10:41:16.376Z"
+    },
+    {
+      "id": "dom_002",
+      "projectId": "proj_fastapi_llama",
+      "ownerId": "user_developer_01",
+      "domainName": "ai-engine.omnihost.local",
+      "isCustom": false,
+      "status": "ssl_active",
+      "sslProvider": "letsencrypt",
+      "dnsTarget": "node1.omnihost.cloud",
+      "createdAt": "2026-09-15T10:41:16.376Z"
+    }
+  ],
+  "databases": [
+    {
+      "id": "db_pg_primary",
+      "projectId": "proj_api_gateway",
+      "ownerId": "user_developer_01",
+      "name": "Production PostgreSQL Cluster",
+      "type": "postgresql",
+      "status": "online",
+      "databaseName": "omnihost_app_db",
+      "username": "db_user_app",
+      "port": 5432,
+      "connectionUri": "postgresql://db_user_app:pg_secret_pass_2026@localhost:5432/omnihost_app_db",
+      "sizeMB": 142,
+      "createdAt": "2026-09-15T10:41:16.376Z"
+    },
+    {
+      "id": "db_redis_cache",
+      "projectId": "proj_api_gateway",
+      "ownerId": "user_developer_01",
+      "name": "Redis 7 Session & Queue Cache",
+      "type": "redis",
+      "status": "online",
+      "databaseName": "redis_0",
+      "username": "default",
+      "port": 6379,
+      "connectionUri": "redis://:redis_secret_pass_2026@localhost:6379/0",
+      "sizeMB": 28,
+      "createdAt": "2026-09-15T10:41:16.376Z"
+    }
+  ],
+  "apiKeys": [
+    {
+      "id": "key_master_01",
+      "userId": "user_developer_01",
+      "name": "CLI Deployment Token",
+      "keyPrefix": "omh_live_9f82",
+      "keyHash": "debc5b7f2b9c30647bbe18c1cee1ed1274235062fed4c4a7662466121f3f2b4a",
+      "scopes": [
+        "projects:read",
+        "projects:write",
+        "deployments:read",
+        "deployments:write",
+        "ai:generate",
+        "logs:read"
+      ],
+      "createdAt": "2026-09-15T10:41:16.376Z",
+      "lastUsedAt": "2026-09-15T10:41:16.376Z"
+    }
+  ],
+  "plans": [
+    {
+      "id": "free",
+      "name": "Free Tier",
+      "description": "Great for testing small APIs, static sites, and microservices",
+      "priceMonthly": 0,
+      "maxProjects": 3,
+      "maxCpuCores": 1,
+      "maxMemoryMB": 1024,
+      "maxStorageMB": 5120,
+      "maxBandwidthGB": 50,
+      "maxDatabases": 1,
+      "allowCustomDomains": false,
+      "allowGpu": false,
+      "allowGameServers": false,
+      "allowAiWorkloads": true,
+      "maxProcesses": 3,
+      "features": [
+        "1 vCPU Compute",
+        "1 GB RAM",
+        "5 GB SSD",
+        "Shared Subdomain",
+        "Auto Restart",
+        "SSL Termination"
+      ]
+    },
+    {
+      "id": "pro",
+      "name": "Pro Compute",
+      "description": "High performance for production web apps, databases & game servers",
+      "priceMonthly": 19,
+      "maxProjects": 15,
+      "maxCpuCores": 4,
+      "maxMemoryMB": 8192,
+      "maxStorageMB": 51200,
+      "maxBandwidthGB": 1000,
+      "maxDatabases": 5,
+      "allowCustomDomains": true,
+      "allowGpu": false,
+      "allowGameServers": true,
+      "allowAiWorkloads": true,
+      "maxProcesses": 20,
+      "features": [
+        "4 vCPU Compute",
+        "8 GB RAM",
+        "50 GB NVMe",
+        "Custom Domains",
+        "Game Servers (Minecraft/Valheim)",
+        "Automated Backups",
+        "Terminal Access"
+      ]
+    },
+    {
+      "id": "business",
+      "name": "Business & AI Cluster",
+      "description": "Maximum power for ML models, high-tick game servers & intensive apps",
+      "priceMonthly": 79,
+      "maxProjects": 50,
+      "maxCpuCores": 16,
+      "maxMemoryMB": 32768,
+      "maxStorageMB": 256000,
+      "maxBandwidthGB": 5000,
+      "maxDatabases": 20,
+      "allowCustomDomains": true,
+      "allowGpu": true,
+      "allowGameServers": true,
+      "allowAiWorkloads": true,
+      "maxProcesses": 100,
+      "features": [
+        "16 vCPU Compute",
+        "32 GB RAM",
+        "256 GB NVMe",
+        "GPU Acceleration / CUDA",
+        "Dedicated Ports",
+        "Priority Background Workers",
+        "24/7 SLA Recovery"
+      ]
+    }
+  ],
+  "auditLogs": [
+    {
+      "action": "WORKER_REGISTERED",
+      "category": "worker",
+      "details": {
+        "workerId": "termux_live_node_01",
+        "name": "Termux Audit Live Node",
+        "type": "termux",
+        "arch": "x64",
+        "cores": 2,
+        "ramMB": 4096
+      },
+      "id": "audit_1789476311380_d2nqj",
+      "createdAt": "2026-09-15T12:45:11.380Z"
+    },
+    {
+      "userId": "user_admin_root",
+      "action": "PROJECT_CREATE",
+      "category": "project",
+      "details": {
+        "projectId": "proj_1789476269163_as0j",
+        "name": "Real Python Worker Verification Workload",
+        "type": "api"
+      },
+      "id": "audit_1789476269170_gs7b9",
+      "createdAt": "2026-09-15T12:44:29.170Z"
+    },
+    {
+      "userId": "user_admin_root",
+      "action": "DEPLOYMENT_SUCCESS",
+      "category": "deployment",
+      "details": {
+        "projectId": "proj_1789476269163_as0j",
+        "version": 1,
+        "durationMs": 5
+      },
+      "id": "audit_1789476269170_wgfk9",
+      "createdAt": "2026-09-15T12:44:29.170Z"
+    },
+    {
+      "userId": "user_admin_root",
+      "userEmail": "admin@omnihost.cloud",
+      "action": "USER_LOGIN",
+      "category": "auth",
+      "details": {
+        "email": "admin@omnihost.cloud"
+      },
+      "id": "audit_1789476269147_vqy5q",
+      "createdAt": "2026-09-15T12:44:29.147Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_CREATE",
+      "category": "project",
+      "details": {
+        "projectId": "proj_1789476247320_2tvs",
+        "name": "Real Python Worker Verification Workload",
+        "type": "api"
+      },
+      "id": "audit_1789476247328_gro3a",
+      "createdAt": "2026-09-15T12:44:07.328Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "DEPLOYMENT_SUCCESS",
+      "category": "deployment",
+      "details": {
+        "projectId": "proj_1789476247320_2tvs",
+        "version": 1,
+        "durationMs": 6
+      },
+      "id": "audit_1789476247327_nreje",
+      "createdAt": "2026-09-15T12:44:07.327Z"
+    },
+    {
+      "userId": "user_admin_root",
+      "userEmail": "admin@omnihost.cloud",
+      "action": "USER_LOGIN",
+      "category": "auth",
+      "details": {
+        "email": "admin@omnihost.cloud"
+      },
+      "id": "audit_1789476247305_hvgxp",
+      "createdAt": "2026-09-15T12:44:07.305Z"
+    },
+    {
+      "action": "WORKER_REGISTERED",
+      "category": "worker",
+      "details": {
+        "workerId": "termux_audit_test_node",
+        "name": "Termux Audit Node",
+        "type": "termux",
+        "arch": "x64",
+        "cores": 2,
+        "ramMB": 4096
+      },
+      "id": "audit_1789476233054_sbpr5",
+      "createdAt": "2026-09-15T12:43:53.054Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_game_paper_mc",
+        "name": "Survival SMP Paper Minecraft Dedicated",
+        "pid": 65295
+      },
+      "id": "audit_1789472392408_8k28k",
+      "createdAt": "2026-09-15T11:39:52.408Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_fastapi_llama",
+        "name": "FastAPI Llama AI Embeddings & Inference",
+        "pid": 13526
+      },
+      "id": "audit_1789472392408_e34g9",
+      "createdAt": "2026-09-15T11:39:52.408Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_api_gateway",
+        "name": "Core API Gateway Microservice",
+        "pid": 20477
+      },
+      "id": "audit_1789472392407_sthvx",
+      "createdAt": "2026-09-15T11:39:52.407Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_game_paper_mc",
+        "name": "Survival SMP Paper Minecraft Dedicated",
+        "pid": 34757
+      },
+      "id": "audit_1789471179050_gt4a4",
+      "createdAt": "2026-09-15T11:19:39.050Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_fastapi_llama",
+        "name": "FastAPI Llama AI Embeddings & Inference",
+        "pid": 19207
+      },
+      "id": "audit_1789471179049_0ztu8",
+      "createdAt": "2026-09-15T11:19:39.049Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_api_gateway",
+        "name": "Core API Gateway Microservice",
+        "pid": 37540
+      },
+      "id": "audit_1789471179049_z6nv5",
+      "createdAt": "2026-09-15T11:19:39.049Z"
+    },
+    {
+      "userId": "user_admin_root",
+      "userEmail": "admin@omnihost.cloud",
+      "action": "USER_LOGIN",
+      "category": "auth",
+      "details": {
+        "email": "admin@omnihost.cloud"
+      },
+      "id": "audit_1789469319676_njlh8",
+      "createdAt": "2026-09-15T10:48:39.676Z"
+    },
+    {
+      "userId": "user_admin_root",
+      "userEmail": "admin@omnihost.cloud",
+      "action": "USER_LOGIN",
+      "category": "auth",
+      "details": {
+        "email": "admin@omnihost.cloud"
+      },
+      "id": "audit_1789469319652_3wo7p",
+      "createdAt": "2026-09-15T10:48:39.652Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_game_paper_mc",
+        "name": "Survival SMP Paper Minecraft Dedicated",
+        "pid": 39359
+      },
+      "id": "audit_1789469250676_wafbe",
+      "createdAt": "2026-09-15T10:47:30.676Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_fastapi_llama",
+        "name": "FastAPI Llama AI Embeddings & Inference",
+        "pid": 34137
+      },
+      "id": "audit_1789469250675_lz1hx",
+      "createdAt": "2026-09-15T10:47:30.675Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_api_gateway",
+        "name": "Core API Gateway Microservice",
+        "pid": 34183
+      },
+      "id": "audit_1789469250675_cr0bb",
+      "createdAt": "2026-09-15T10:47:30.675Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_game_paper_mc",
+        "name": "Survival SMP Paper Minecraft Dedicated",
+        "pid": 64835
+      },
+      "id": "audit_1789468887460_xmt86",
+      "createdAt": "2026-09-15T10:41:27.460Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_fastapi_llama",
+        "name": "FastAPI Llama AI Embeddings & Inference",
+        "pid": 79320
+      },
+      "id": "audit_1789468887460_spmj7",
+      "createdAt": "2026-09-15T10:41:27.460Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_api_gateway",
+        "name": "Core API Gateway Microservice",
+        "pid": 22349
+      },
+      "id": "audit_1789468887459_706kk",
+      "createdAt": "2026-09-15T10:41:27.459Z"
+    },
+    {
+      "userId": "user_test",
+      "action": "PROJECT_STOP",
+      "category": "project",
+      "details": {
+        "projectId": "proj_mock_test",
+        "name": "Test Project"
+      },
+      "id": "audit_1789468884597_5mpb2",
+      "createdAt": "2026-09-15T10:41:24.597Z"
+    },
+    {
+      "userId": "user_test",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_mock_test",
+        "name": "Test Project",
+        "pid": 16590
+      },
+      "id": "audit_1789468884596_ok6do",
+      "createdAt": "2026-09-15T10:41:24.596Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_game_paper_mc",
+        "name": "Survival SMP Paper Minecraft Dedicated",
+        "pid": 42835
+      },
+      "id": "audit_1789468879411_johq7",
+      "createdAt": "2026-09-15T10:41:19.411Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_fastapi_llama",
+        "name": "FastAPI Llama AI Embeddings & Inference",
+        "pid": 32470
+      },
+      "id": "audit_1789468879411_ldc07",
+      "createdAt": "2026-09-15T10:41:19.411Z"
+    },
+    {
+      "userId": "user_developer_01",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_api_gateway",
+        "name": "Core API Gateway Microservice",
+        "pid": 64669
+      },
+      "id": "audit_1789468879410_lnm3r",
+      "createdAt": "2026-09-15T10:41:19.410Z"
+    },
+    {
+      "userId": "user_test",
+      "action": "PROJECT_STOP",
+      "category": "project",
+      "details": {
+        "projectId": "proj_mock_test",
+        "name": "Test Project"
+      },
+      "id": "audit_1789468876609_8fao9",
+      "createdAt": "2026-09-15T10:41:16.609Z"
+    },
+    {
+      "userId": "user_test",
+      "action": "PROJECT_START",
+      "category": "project",
+      "details": {
+        "projectId": "proj_mock_test",
+        "name": "Test Project",
+        "pid": 84057
+      },
+      "id": "audit_1789468876608_88e0q",
+      "createdAt": "2026-09-15T10:41:16.608Z"
+    },
+    {
+      "id": "audit_001",
+      "userId": "user_admin_root",
+      "userEmail": "admin@omnihost.cloud",
+      "action": "SYSTEM_BOOT",
+      "category": "system",
+      "details": {
+        "message": "OmniHost 24/7 Cloud Node supervisor initialized successfully"
+      },
+      "createdAt": "2026-09-14T10:41:16.376Z"
+    },
+    {
+      "id": "audit_002",
+      "userId": "user_developer_01",
+      "userEmail": "developer@omnihost.cloud",
+      "action": "DEPLOYMENT_SUCCESS",
+      "category": "deployment",
+      "details": {
+        "projectId": "proj_api_gateway",
+        "version": 1
+      },
+      "createdAt": "2026-09-15T05:41:16.376Z"
+    }
+  ],
+  "backups": [],
+  "workers": [
+    {
+      "id": "termux_audit_test_node",
+      "name": "Termux Audit Node",
+      "type": "termux",
+      "status": "online",
+      "connectionType": "outbound_polling",
+      "token": "sec_termux_test_audit_01",
+      "ipAddress": "127.0.0.1",
+      "os": {
+        "name": "Android Termux Linux",
+        "version": "4.19.0-gvisor",
+        "arch": "x64",
+        "platform": "android",
+        "isTermux": true,
+        "nodeVersion": "v22.23.2"
+      },
+      "hardware": {
+        "cpuCores": 2,
+        "cpuModel": "unknown",
+        "cpuUsagePercent": 15,
+        "totalMemoryMB": 4096,
+        "usedMemoryMB": 718,
+        "freeMemoryMB": 3378,
+        "memoryUsagePercent": 17.5,
+        "totalStorageGB": 503.8,
+        "usedStorageGB": 0.2,
+        "freeStorageGB": 503.6,
+        "storageUsagePercent": 0,
+        "battery": {
+          "level": 95,
+          "isCharging": true
+        },
+        "uptimeSeconds": 8074,
+        "loadAverage": [
+          0,
+          0,
+          0
+        ]
+      },
+      "runtimes": [
+        {
+          "runtime": "nodejs-20",
+          "available": true,
+          "version": "v22.23.2"
+        },
+        {
+          "runtime": "nodejs-22",
+          "available": true,
+          "version": "v22.23.2"
+        },
+        {
+          "runtime": "python-3.11",
+          "available": true,
+          "version": "Python 3.10.12"
+        },
+        {
+          "runtime": "python-ai-pytorch",
+          "available": false
+        },
+        {
+          "runtime": "php-8.3",
+          "available": false
+        },
+        {
+          "runtime": "java-21",
+          "available": false
+        },
+        {
+          "runtime": "go-1.22",
+          "available": false
+        },
+        {
+          "runtime": "rust-1.78",
+          "available": false
+        },
+        {
+          "runtime": "cpp-gcc",
+          "available": false
+        },
+        {
+          "runtime": "bash",
+          "available": true,
+          "version": "GNU bash, version 5.2.15(1)-release (x86"
+        },
+        {
+          "runtime": "docker",
+          "available": false
+        },
+        {
+          "runtime": "static",
+          "available": true,
+          "version": "Static Engine 1.0"
+        }
+      ],
+      "assignedProjectsCount": 0,
+      "maxWorkloads": 10,
+      "lastHeartbeatAt": "2026-09-15T12:46:33.092Z",
+      "pingLatencyMs": 2,
+      "tags": [
+        "termux",
+        "android",
+        "arm64",
+        "edge",
+        "outbound-worker"
+      ],
+      "createdAt": "2026-09-15T12:43:53.054Z"
+    },
+    {
+      "id": "termux_live_node_01",
+      "name": "Termux Audit Live Node",
+      "type": "termux",
+      "status": "online",
+      "connectionType": "outbound_polling",
+      "token": "sec_termux_audit_live",
+      "ipAddress": "127.0.0.1",
+      "os": {
+        "name": "Android Termux Linux",
+        "version": "4.19.0-gvisor",
+        "arch": "x64",
+        "platform": "android",
+        "isTermux": true,
+        "nodeVersion": "v22.23.2"
+      },
+      "hardware": {
+        "cpuCores": 2,
+        "cpuModel": "unknown",
+        "cpuUsagePercent": 15,
+        "totalMemoryMB": 4096,
+        "usedMemoryMB": 718,
+        "freeMemoryMB": 3378,
+        "memoryUsagePercent": 17.5,
+        "totalStorageGB": 503.8,
+        "usedStorageGB": 0.2,
+        "freeStorageGB": 503.6,
+        "storageUsagePercent": 0,
+        "battery": {
+          "level": 95,
+          "isCharging": true
+        },
+        "uptimeSeconds": 8072,
+        "loadAverage": [
+          0,
+          0,
+          0
+        ]
+      },
+      "runtimes": [
+        {
+          "runtime": "nodejs-20",
+          "available": true,
+          "version": "v22.23.2"
+        },
+        {
+          "runtime": "nodejs-22",
+          "available": true,
+          "version": "v22.23.2"
+        },
+        {
+          "runtime": "python-3.11",
+          "available": true,
+          "version": "Python 3.10.12"
+        },
+        {
+          "runtime": "python-ai-pytorch",
+          "available": false
+        },
+        {
+          "runtime": "php-8.3",
+          "available": false
+        },
+        {
+          "runtime": "java-21",
+          "available": false
+        },
+        {
+          "runtime": "go-1.22",
+          "available": false
+        },
+        {
+          "runtime": "rust-1.78",
+          "available": false
+        },
+        {
+          "runtime": "cpp-gcc",
+          "available": false
+        },
+        {
+          "runtime": "bash",
+          "available": true,
+          "version": "GNU bash, version 5.2.15(1)-release (x86"
+        },
+        {
+          "runtime": "docker",
+          "available": false
+        },
+        {
+          "runtime": "static",
+          "available": true,
+          "version": "Static Engine 1.0"
+        }
+      ],
+      "assignedProjectsCount": 0,
+      "maxWorkloads": 10,
+      "lastHeartbeatAt": "2026-09-15T12:46:31.413Z",
+      "pingLatencyMs": 1,
+      "tags": [
+        "termux",
+        "android",
+        "arm64",
+        "edge",
+        "outbound-worker"
+      ],
+      "createdAt": "2026-09-15T12:45:11.380Z"
+    }
+  ],
+  "workerJobs": [],
+  "systemSettings": {
+    "serverName": "OmniHost Primary Compute Node 01",
+    "publicDomain": "omnihost.local",
+    "allowRegistration": true,
+    "requireEmailVerification": false,
+    "defaultUserPlan": "pro",
+    "reverseProxyPort": 80,
+    "sslEnabled": true,
+    "maxGlobalProcesses": 500,
+    "autoRestartCrashed": true
+  }
+}
